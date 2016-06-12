@@ -1,0 +1,22 @@
+{
+  "name": "authenandauth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ahmad Magdy",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-node": "^0.1.0",
+    "body-parser": "^1.15.1",
+    "ejs": "^2.4.2",
+    "express": "^4.13.4",
+    "jsonwebtoken": "^7.0.0",
+    "mongoose": "^4.4.20",
+    "mongoose-unique-validator": "^1.0.2",
+    "morgan": "^1.7.0",
+    "node-localstorage": "^1.3.0"
+  }
+}

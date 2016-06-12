@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="css/boostrap.min.css">
+    <script   src="https://code.jquery.com/jquery-3.0.0.min.js"   integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <br><br><br>
+        <div id= "msgcolor" hidden class="alert alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Error: </strong> <p id="message">message</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form method="post" id="form1">
+                            <div class="form-group">
+                                <label for="name">Full Name:</label>
+                                <input type="text" class="form-control" placeholder="Type your Name" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Username:</label>
+                                <input type="text" class="form-control" placeholder="Type your username" name="username">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" placeholder="Type your email here" required name="email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control" placeholder="Type your password" required name="password">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bio">Bio:</label>
+                                <textarea name="bio" class="form-control" placeholder="Type your information here" cols="20" rows="5"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="imageURL">imageURL:</label>
+                                <input type="text" class="form-control" placeholder="Type your Profile Image here"  name="imageURL">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-info form-control" placeholder="Type your password" required name="password">
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
