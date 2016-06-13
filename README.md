@@ -30,7 +30,7 @@ and also if user looking for user and show his profile details will not show the
 
 <img src="http://s01.arab.sh/i/00078/1dxppqywcp9h.png">
 
-<img src="http://s01.arab.sh/i/00078/tvepjozt8q12.png">
+<img src="http://s02.arab.sh/i/00078/bmppjn0avjvm.png">
 
 <img src="http://s01.arab.sh/i/00078/5d4hx4zn7qok.png">
 
