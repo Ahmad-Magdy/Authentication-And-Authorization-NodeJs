@@ -1,6 +1,6 @@
 var jwt = require('jsonwebtoken');
 var User = require('./models/user');
-var localStorage = require('node-localstorage');
+var cookie = require('cookie-parser');
 var config = require('../config');
 
 module.exports = function(express){
@@ -26,9 +26,11 @@ module.exports = function(express){
         }
 
         var token = jwt.sign(user,config.superSecret,{
-          expiresIn: '24 days'
+          //expiresIn: '24 days'
+            expiresIn: '24 days'
+
         });
-        localStorage.token = token;
+        req.cookie('token',token) ;
         /*user.password = null;
         localStorage.user = user;*/
         res.json({message:'user with name : '+user.name+' Added'});
@@ -38,7 +40,7 @@ module.exports = function(express){
 
     apiRouter.route('/login')
               .get(function(req,res){
-                var token = localStorage.token;
+                var token = req.cookies.token;
                 if(!token){
                   //res.render('login');
                   res.json('as login page');
@@ -70,27 +72,25 @@ module.exports = function(express){
                   var token = jwt.sign(user,config.superSecret,{
                     expiresIn: '24 days'
                   });
-                  localStorage.token = token;
+                  res.cookie('token',token,{httpOnly:true}) ;
                   user.password = null;
-                  localStorage.decoded = {};
-                  localStorage.decoded._doc = user;
-
+                  res.cookie('decoded',{_doc:user},{httpOnly:true});
                   return res.json({message: 'LoggedIn'});// replaced with redirect
                 });
               });
 
     apiRouter.route('/logout')
         .get(function(req,res){
-        localStorage.token = null;
-        localStorage.decoded = null;
-            res.json({message: 'LoggedOut'});
+        res.clearCookie('token');
+        res.clearCookie('decoded');
+        res.json({message: 'LoggedOut'});
     });
 
   apiRouter.use(function(req,res,next){
-    if(!localStorage.token){
+    if(!req.cookies.token){
       res.redirect('/login');
     }
-    jwt.verify(localStorage.token,config.superSecret,function(err,decoded){
+    jwt.verify(req.cookies.token,config.superSecret,function(err,decoded){
       req.decoded = decoded;
       next();
     });
@@ -117,8 +117,8 @@ module.exports = function(express){
         if(err){
           res.status(400).json({message: 'Wrong thing'});
         }
-          user.password = null;
-        localStorage.decoded._doc = user;
+        user.password = null;
+        res.cookie('decoded',{_doc:user},{httpOnly:true});
         res.json({message:'updated !!'});
 
         });
@@ -162,7 +162,7 @@ module.exports = function(express){
   apiRouter.get('/AllUsers',function(req,res){
     User.find({},function(err,users){
         if(err) throw err;
-        localStorage.users = users;
+        res.cookie('users',users);
         res.json({users: users});
     });
   });
